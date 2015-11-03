@@ -1,0 +1,37 @@
+<html>
+   <head>
+      <meta charset="UTF-8">
+      <title>Online Csharp Compiler</title>
+      <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.js" type="text/javascript"></script>
+      <script src="//ajaxorg.github.io/ace-builds/src-min-noconflict/ace.js" type="text/javascript" charset="utf-8 "></script>
+      <script>
+         $(document).ready(function(){
+         	 
+         	var editor = ace.edit("editor");
+         editor.getSession().setUseWorker(false);
+         editor.setTheme("ace/theme/monokai");
+          editor.getSession().setMode("ace/mode/csharp");
+          var input = $('input[name="code"]');
+               editor.getSession().on("change", function () {
+              		 input.val(editor.getSession().getValue());
+         });
+         });
+      </script>
+      <style>
+         #editor {
+         position: relative;
+         height: 400px;
+         width: 800px
+         }
+      </style>
+   </head>
+   <body>
+      <form method="post" action="/receive">
+         <input type="text" name="code" style="display: none;">
+         <div id="editor">
+         </div>
+         <input type="submit" value="Compile">
+      </form>
+      <hr>
+   </body>
+</html>
